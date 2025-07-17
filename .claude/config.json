@@ -1,15 +1,36 @@
 {
-  "version": "1.0.70",
-  "project": {
-    "name": "claude-code-flow",
-    "type": "claude-flow",
-    "created": "2025-06-17T20:40:36.847Z"
+  "version": "1.0",
+  "sparc": {
+    "enabled": true,
+    "modes": [
+      "orchestrator",
+      "coder",
+      "researcher",
+      "tdd",
+      "architect",
+      "reviewer",
+      "debugger",
+      "tester",
+      "analyzer",
+      "optimizer",
+      "documenter",
+      "designer",
+      "innovator",
+      "swarm-coordinator",
+      "memory-manager",
+      "batch-executor",
+      "workflow-manager"
+    ]
   },
-  "features": {
-    "swarm": true,
-    "sparc": true,
-    "memory": true,
-    "terminal": true,
-    "mcp": true
+  "swarm": {
+    "enabled": true,
+    "strategies": [
+      "research",
+      "development",
+      "analysis",
+      "testing",
+      "optimization",
+      "maintenance"
+    ]
   }
 }

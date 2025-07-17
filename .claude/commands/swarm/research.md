@@ -1,21 +1,18 @@
-# Research Swarm Command
+# Research Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "Research objective" --strategy research --mode distributed
-```
+## Purpose
+Deep research through parallel information gathering.
 
-## Description
-Multi-agent research coordination with distributed intelligence gathering.
+## Activation
+`./claude-flow swarm "research topic X" --strategy research`
 
-## Strategy Features
-- Web search and data collection
-- Source credibility analysis
-- Knowledge synthesis
-- Report generation
+## Agent Roles
+- Web Researcher: Searches online sources
+- Academic Researcher: Analyzes papers
+- Data Analyst: Processes findings
+- Report Writer: Synthesizes results
 
-## Best Practices
-- Use parallel execution for multiple research threads
-- Enable monitoring for real-time progress
-- Set appropriate timeout for comprehensive research
-- Use distributed mode for complex topics
+## Research Methods
+- Parallel web searches
+- Cross-reference validation
+- Source credibility assessment

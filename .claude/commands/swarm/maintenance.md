@@ -1,21 +1,18 @@
-# Maintenance Swarm Command
+# Maintenance Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "System maintenance" --strategy maintenance --mode centralized
-```
+## Purpose
+System maintenance and updates through coordinated agents.
 
-## Description
-System maintenance and updates with coordinated agents.
+## Activation
+`./claude-flow swarm "update dependencies" --strategy maintenance`
 
-## Strategy Features
-- System health checks
-- Update planning
-- Implementation coordination
-- Verification and rollback
+## Agent Roles
+- Dependency Analyzer: Checks for updates
+- Security Scanner: Identifies vulnerabilities
+- Test Runner: Validates changes
+- Documentation Updater: Maintains docs
 
-## Best Practices
-- Use centralized mode for controlled updates
-- Enable monitoring for safety
-- Set conservative timeouts
-- Use appropriate output for audit trails
+## Safety Features
+- Automatic backups
+- Rollback capability
+- Incremental updates

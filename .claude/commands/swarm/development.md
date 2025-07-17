@@ -1,21 +1,19 @@
-# Development Swarm Command
+# Development Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "Build application" --strategy development --mode hierarchical
-```
+## Purpose
+Coordinated development through specialized agent teams.
 
-## Description
-Coordinated software development with specialized agents.
+## Activation
+`./claude-flow swarm "build feature X" --strategy development`
 
-## Strategy Features
-- Architecture design
-- Code implementation
-- Testing and validation
-- Documentation generation
+## Agent Roles
+- Architect: Designs system structure
+- Frontend Developer: Implements UI
+- Backend Developer: Creates APIs
+- Database Specialist: Manages data layer
+- Integration Expert: Connects components
 
 ## Best Practices
-- Use hierarchical mode for complex projects
-- Enable parallel execution for independent modules
-- Set higher agent count for large projects
-- Monitor progress with --monitor flag
+- Use hierarchical mode for large projects
+- Enable parallel execution
+- Implement continuous testing

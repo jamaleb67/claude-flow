@@ -1,21 +1,19 @@
-# Optimization Swarm Command
+# Optimization Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "Optimize performance" --strategy optimization --mode hybrid
-```
+## Purpose
+Performance optimization through specialized analysis.
 
-## Description
-Performance optimization with coordinated analysis and improvements.
+## Activation
+`./claude-flow swarm "optimize performance" --strategy optimization`
 
-## Strategy Features
-- Performance profiling
-- Bottleneck identification
-- Optimization implementation
-- Validation and testing
+## Agent Roles
+- Performance Profiler: Identifies bottlenecks
+- Memory Analyzer: Detects leaks
+- Code Optimizer: Implements improvements
+- Benchmark Runner: Measures impact
 
-## Best Practices
-- Use hybrid mode for adaptive optimization
-- Enable monitoring for real-time metrics
-- Use parallel execution for multiple optimization paths
-- Set adequate timeout for thorough optimization
+## Optimization Areas
+- Execution speed
+- Memory usage
+- Network efficiency
+- Bundle size

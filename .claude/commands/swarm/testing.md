@@ -1,21 +1,19 @@
-# Testing Swarm Command
+# Testing Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "Test application" --strategy testing --mode mesh
-```
+## Purpose
+Comprehensive testing through distributed execution.
 
-## Description
-Comprehensive testing coordination with distributed validation.
+## Activation
+`./claude-flow swarm "test application" --strategy testing`
 
-## Strategy Features
-- Test planning and strategy
-- Test case generation
-- Parallel test execution
-- Results aggregation and reporting
+## Agent Roles
+- Unit Tester: Tests individual components
+- Integration Tester: Validates interactions
+- E2E Tester: Tests user flows
+- Performance Tester: Measures metrics
+- Security Tester: Finds vulnerabilities
 
-## Best Practices
-- Use mesh mode for distributed testing
-- Enable parallel execution for test suites
-- Set appropriate timeout for comprehensive testing
-- Monitor results with --monitor flag
+## Test Coverage
+- Code coverage analysis
+- Edge case identification
+- Regression prevention

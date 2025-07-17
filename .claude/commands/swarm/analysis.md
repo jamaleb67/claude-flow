@@ -1,21 +1,18 @@
-# Analysis Swarm Command
+# Analysis Swarm Strategy
 
-## Usage
-```bash
-claude-flow swarm "Analyze data" --strategy analysis --parallel --max-agents 8
-```
+## Purpose
+Comprehensive analysis through distributed agent coordination.
 
-## Description
-Data analysis and insights generation with coordinated agents.
+## Activation
+`./claude-flow swarm "analyze system performance" --strategy analysis`
 
-## Strategy Features
-- Data collection and preprocessing
-- Statistical analysis
-- Pattern recognition
-- Visualization and reporting
+## Agent Roles
+- Data Collector: Gathers metrics and logs
+- Pattern Analyzer: Identifies trends and anomalies
+- Report Generator: Creates comprehensive reports
+- Insight Synthesizer: Combines findings
 
-## Best Practices
-- Use parallel execution for large datasets
-- Increase agent count for complex analysis
-- Enable monitoring for long-running tasks
-- Use appropriate output format (json, csv, html)
+## Coordination Modes
+- Mesh: For exploratory analysis
+- Pipeline: For sequential processing
+- Hierarchical: For complex systems
