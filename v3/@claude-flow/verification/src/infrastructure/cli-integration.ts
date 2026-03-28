@@ -5,15 +5,50 @@
  * Ensures compatibility with claude-flow CLI and provides verification commands.
  */
 
-import { Logger } from '@claude-flow/shared/mcp';
-import { verificationHookManager } from './hooks.js';
-import type { VerificationConfig } from './hooks.js';
+import { createLogger } from '../shared/external-types.js';
 
-const logger = new Logger({
-  level: 'info',
-  format: 'text',
-  destination: 'console'
-}, { prefix: 'VerificationCLI' });
+// Stub for verificationHookManager - will be wired in Day 3
+const verificationHookManager: any = {
+  registerPreTaskHook: async () => {},
+  registerPostTaskHook: async () => {},
+  unregisterHook: async () => {},
+  getMetrics: () => ({
+    totalVerifications: 0,
+    passRate: 1.0,
+    avgDuration: 0,
+    totalChecks: 0,
+    totalPassed: 0,
+    totalFailed: 0,
+    averageAccuracy: 1.0,
+    averageConfidence: 1.0,
+  }),
+  getVerificationStatus: (agentId?: string) => ({
+    enabled: true,
+    lastRun: new Date(),
+    state: {
+      preTask: { enabled: true },
+      postTask: { enabled: true },
+      rollback: { enabled: true },
+      telemetry: { enabled: true },
+    },
+    metrics: {
+      totalVerifications: 0,
+      passRate: 1.0,
+    },
+  }),
+  updateConfig: async (config: any) => {},
+  cleanup: async () => {},
+};
+
+// Stub for VerificationConfig
+interface VerificationConfig {
+  preTask: { enabled: boolean };
+  postTask: { enabled: boolean };
+  rollback: { enabled: boolean };
+  telemetry: { enabled: boolean };
+}
+
+const logger = createLogger('VerificationCLI');
 
 // ===== CLI Command Types =====
 

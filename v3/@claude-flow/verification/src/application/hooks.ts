@@ -6,8 +6,8 @@
  * truth telemetry, and rollback capabilities.
  */
 
-// Stub types for hooks system - will be replaced when @claude-flow/hooks is wired
-// Using 'any' for maximum flexibility during Day 1 migration
+// Using 'any' types for maximum flexibility during migration
+// Will be properly typed when @claude-flow/hooks is wired
 type AgenticHookContext = any;
 type HookHandlerResult = any;
 type HookRegistration = any;
@@ -15,22 +15,7 @@ type WorkflowHookPayload = any;
 type PerformanceHookPayload = any;
 type MemoryHookPayload = any;
 
-// Stub agenticHookManager with EventEmitter-like interface
-const agenticHookManager: any = {
-  register: async (reg: any): Promise<void> => {},
-  unregister: async (id: string): Promise<void> => {},
-  trigger: async (hookId: string, payload: unknown): Promise<any> => ({ success: true }),
-  emit: (event: string, ...args: any[]) => {},
-  on: (event: string, handler: any) => {},
-};
-
-// Simple logger stub
-const logger = {
-  info: (msg: string, ...args: unknown[]) => console.log(`[INFO] ${msg}`, ...args),
-  warn: (msg: string, ...args: unknown[]) => console.warn(`[WARN] ${msg}`, ...args),
-  error: (msg: string, ...args: unknown[]) => console.error(`[ERROR] ${msg}`, ...args),
-  debug: (msg: string, ...args: unknown[]) => console.debug(`[DEBUG] ${msg}`, ...args),
-};
+import { logger, agenticHookManager } from '../shared/external-types.js';
 
 // ===== Types & Interfaces =====
 

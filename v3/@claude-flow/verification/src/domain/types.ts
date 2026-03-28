@@ -3,12 +3,12 @@
  * Comprehensive type definitions for the verification system
  */
 
-import type { AgentId, TaskId, SwarmId, TaskResult, AgentState } from '@claude-flow/swarm';
+import type { AgentId, TaskId, SwarmId, TaskResult, AgentState } from '../shared/external-types.js';
 
 // ===== CORE VERIFICATION TYPES =====
 
 export type VerificationLevel = 'basic' | 'standard' | 'strict' | 'critical';
-export type VerificationStatus = 'pending' | 'running' | 'passed' | 'failed' | 'error' | 'cancelled';
+export type VerificationStatus = 'pending' | 'running' | 'passed' | 'failed' | 'error' | 'cancelled' | 'paused';
 export type CheckpointType = 'pre_execution' | 'mid_execution' | 'post_execution' | 'rollback_point';
 export type ClaimType = 'task_completion' | 'quality_metric' | 'performance_benchmark' | 'system_state' | 'agent_capability';
 

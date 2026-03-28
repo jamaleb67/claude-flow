@@ -3,29 +3,7 @@
  * Provides statistical validation and confidence analysis for agent claims and system states
  */
 
-// Logger interface stub
-interface ILogger {
-  info: (msg: string, ...args: unknown[]) => void;
-  warn: (msg: string, ...args: unknown[]) => void;
-  error: (msg: string, ...args: unknown[]) => void;
-  debug: (msg: string, ...args: unknown[]) => void;
-}
-
-// Simple logger stub
-const logger: ILogger = {
-  info: (msg: string, ...args: unknown[]) => console.log(`[INFO] ${msg}`, ...args),
-  warn: (msg: string, ...args: unknown[]) => console.warn(`[WARN] ${msg}`, ...args),
-  error: (msg: string, ...args: unknown[]) => console.error(`[ERROR] ${msg}`, ...args),
-  debug: (msg: string, ...args: unknown[]) => console.debug(`[DEBUG] ${msg}`, ...args),
-};
-
-// AppError stub
-class AppError extends Error {
-  constructor(message: string, public code?: string) {
-    super(message);
-    this.name = 'AppError';
-  }
-}
+import { type ILogger, logger, AppError, type AgentId, type AgentState } from '../shared/external-types.js';
 import type {
   TruthScore,
   TruthScoreConfig,
@@ -39,7 +17,6 @@ import type {
   VerificationError,
 } from './types.js';
 import { VERIFICATION_CONSTANTS } from './types.js';
-import type { AgentId, AgentState } from '@claude-flow/swarm';
 
 export interface TruthScorerOptions {
   config?: Partial<TruthScoreConfig>;

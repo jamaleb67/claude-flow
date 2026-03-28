@@ -5,8 +5,7 @@
  * escalation management, and automated remediation capabilities.
  */
 
-import type { ILogger } from '@claude-flow/shared/mcp';
-import type { IEventBus } from '@claude-flow/shared/core';
+import type { ILogger, IEventBus } from '../shared/external-types.js';
 import type {
   TruthMetric,
   TruthAlert,

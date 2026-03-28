@@ -5,7 +5,7 @@
  * and visualization capabilities for truth telemetry metrics.
  */
 
-import type { ILogger } from '@claude-flow/shared/mcp';
+import type { ILogger } from '../shared/external-types.js';
 import type {
   DashboardData,
   DataPoint,

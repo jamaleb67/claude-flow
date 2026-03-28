@@ -4,30 +4,7 @@
  */
 
 import type { EventEmitter } from 'node:events';
-
-// Logger interface stub
-interface ILogger {
-  info: (msg: string, ...args: unknown[]) => void;
-  warn: (msg: string, ...args: unknown[]) => void;
-  error: (msg: string, ...args: unknown[]) => void;
-  debug: (msg: string, ...args: unknown[]) => void;
-}
-
-// Simple logger stub
-const logger: ILogger = {
-  info: (msg: string, ...args: unknown[]) => console.log(`[INFO] ${msg}`, ...args),
-  warn: (msg: string, ...args: unknown[]) => console.warn(`[WARN] ${msg}`, ...args),
-  error: (msg: string, ...args: unknown[]) => console.error(`[ERROR] ${msg}`, ...args),
-  debug: (msg: string, ...args: unknown[]) => console.debug(`[DEBUG] ${msg}`, ...args),
-};
-
-// AppError stub
-class AppError extends Error {
-  constructor(message: string, public code?: string) {
-    super(message);
-    this.name = 'AppError';
-  }
-}
+import { type ILogger, logger, AppError } from '../shared/external-types.js';
 import type {
   VerificationPipelineConfig,
   VerificationCheckpoint,

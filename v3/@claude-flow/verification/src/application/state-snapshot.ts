@@ -25,11 +25,29 @@ export class StateSnapshotManager {
     return snapshot;
   }
 
+  async createSnapshot(options?: string | { name?: string; description?: string; context?: any }): Promise<Snapshot> {
+    const label = typeof options === 'string' ? options : options?.name;
+    const snapshot: Snapshot = {
+      id: `snapshot-${label || Date.now()}`,
+      timestamp: Date.now(),
+      state: {},
+      metadata: typeof options === 'object' ? options : { label },
+    };
+    this.snapshots.set(snapshot.id, snapshot);
+    return snapshot;
+  }
+
   async restore(snapshotId: string): Promise<boolean> {
     const snapshot = this.snapshots.get(snapshotId);
     if (!snapshot) return false;
     // Stub: would restore state here
     return true;
+  }
+
+  async rollback(options: string | { snapshotId?: string; reason?: string; scope?: any }): Promise<boolean> {
+    const snapshotId = typeof options === 'string' ? options : options?.snapshotId;
+    if (!snapshotId) return false;
+    return this.restore(snapshotId);
   }
 
   async list(): Promise<Snapshot[]> {

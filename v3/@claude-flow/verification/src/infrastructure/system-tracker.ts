@@ -5,7 +5,7 @@
  * with real-time monitoring and predictive analytics capabilities.
  */
 
-import type { ILogger } from '@claude-flow/shared/mcp';
+import type { ILogger } from '../shared/external-types.js';
 import type {
   TruthMetric,
   SystemTruthMetrics,

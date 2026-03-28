@@ -5,13 +5,7 @@
  * reliability, consistency, efficiency, and adaptability metrics.
  */
 
-// Logger interface stub
-interface ILogger {
-  info: (msg: string, ...args: unknown[]) => void;
-  warn: (msg: string, ...args: unknown[]) => void;
-  error: (msg: string, ...args: unknown[]) => void;
-  debug: (msg: string, ...args: unknown[]) => void;
-}
+import type { ILogger } from '../shared/external-types.js';
 import type {
   TruthMetric,
   AgentTruthScore,

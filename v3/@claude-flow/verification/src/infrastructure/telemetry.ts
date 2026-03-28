@@ -8,9 +8,7 @@
  */
 
 import { EventEmitter } from 'node:events';
-import type { ILogger } from '@claude-flow/shared/mcp';
-import type { IEventBus } from '@claude-flow/shared/core';
-import type { DistributedMemorySystem } from '@claude-flow/memory';
+import type { ILogger, IEventBus, DistributedMemorySystem } from '../shared/external-types.js';
 
 // ========================================================================================
 // Core Truth Telemetry Types
@@ -166,6 +164,11 @@ export interface SystemTruthMetrics {
   recoveryTime: number;
   efficiency: number;
   distributionMetrics: DistributionMetrics;
+  // Additional metrics for system tracking
+  throughput: number;
+  latency: number;
+  errorRate: number;
+  successRate: number;
 }
 
 export interface DistributionMetrics {
@@ -186,14 +189,18 @@ export interface TruthAlert {
   thresholds: AlertThreshold[];
   actions: AlertAction[];
   escalationPath: EscalationLevel[];
+  escalationLevel: number;
   resolved: boolean;
   resolvedAt?: Date;
   resolvedBy?: string;
+  acknowledged: boolean;
+  acknowledgedAt?: Date;
+  acknowledgedBy?: string;
 }
 
 export interface AlertThreshold {
   metric: string;
-  operator: 'gt' | 'lt' | 'eq' | 'gte' | 'lte' | 'ne';
+  operator: 'gt' | 'lt' | 'eq' | 'gte' | 'lte' | 'ne' | 'rate' | 'change';
   value: number;
   duration: number;
   severity: 'info' | 'warning' | 'critical' | 'emergency';

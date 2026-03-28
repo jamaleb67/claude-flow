@@ -27,18 +27,12 @@
     "dist",
     "**/*.test.ts",
     "**/*.spec.ts",
-    "src/infrastructure/alert-manager.ts",
-    "src/infrastructure/cli-integration.ts",
-    "src/infrastructure/dashboard-exporter.ts",
-    "src/infrastructure/system-tracker.ts",
     "src/infrastructure/telemetry.ts",
+    "src/infrastructure/alert-manager.ts",
+    "src/infrastructure/system-tracker.ts",
+    "src/infrastructure/dashboard-exporter.ts",
     "src/application/verification-pipeline.ts",
-    "src/application/checkpoint-manager.ts",
-    "src/application/rollback-engine.ts",
-    "src/application/hooks.ts",
-    "src/application/middleware.ts",
     "src/domain/truth-scorer.ts",
-    "src/domain/agent-scorer.ts",
-    "src/domain/security.ts"
+    "src/domain/agent-scorer.ts"
   ]
 }

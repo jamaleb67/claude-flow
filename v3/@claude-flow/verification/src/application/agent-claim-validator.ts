@@ -5,9 +5,12 @@
 
 export interface ClaimValidationResult {
   isValid: boolean;
+  passed: boolean;
   confidence: number;
+  score: number;
   errors: string[];
   warnings: string[];
+  evidence: any[];
 }
 
 export class AgentClaimValidator {
@@ -17,10 +20,17 @@ export class AgentClaimValidator {
     // Stub implementation
     return {
       isValid: true,
+      passed: true,
       confidence: 0.9,
+      score: 0.95,
       errors: [],
       warnings: [],
+      evidence: [],
     };
+  }
+
+  async validateClaim(claim: any): Promise<ClaimValidationResult> {
+    return this.validate(claim);
   }
 
   async validateBatch(claims: any[]): Promise<ClaimValidationResult[]> {

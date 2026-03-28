@@ -9,19 +9,41 @@
  * - Checkpoint management and rollback capabilities
  * - Byzantine fault tolerance for multi-agent systems
  *
- * Note: Day 1 migration - minimal exports, full exports in Day 2
+ * Day 2 migration status:
+ * - Core domain types: Exported
+ * - DeceptionDetector: Exported (fork-unique)
+ * - Pipeline stubs: Exported
+ * - Security module: Exported
+ * - Checkpoint/Rollback: Exported
+ *
+ * Files pending type alignment (Day 3+):
+ * - telemetry.ts, alert-manager.ts, system-tracker.ts
+ * - verification-pipeline.ts, truth-scorer.ts, agent-scorer.ts
  */
 
-// Domain Layer - Core deception detector (fork-unique)
-export { DeceptionDetector } from './domain/index.js';
+// Domain Layer - Core types and deception detector (fork-unique)
+export * from './domain/index.js';
 
-// Application Layer - Verification pipeline and stubs
+// Application Layer - Pipeline, checkpoint, rollback, stubs (selective to avoid conflicts)
 export {
   VerificationPipeline,
+  CheckpointManager,
+  RollbackEngine,
   AgentClaimValidator,
   IntegrationTestRunner,
   StateSnapshotManager,
+  SecurityMiddlewareManager,
+  ThreatIntelligenceMiddleware,
+  IPFilterMiddleware,
+  SecurityLoggingMiddleware,
 } from './application/index.js';
 
-// API types
-export * from './api/index.js';
+// Infrastructure Layer - CLI integration
+export * from './infrastructure/index.js';
+
+// API types (selective to avoid conflicts with domain types)
+export {
+  TruthMonitoringEvent,
+  VerificationQuery,
+  VerificationMetrics,
+} from './api/index.js';
