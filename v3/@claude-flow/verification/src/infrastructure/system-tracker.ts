@@ -272,7 +272,22 @@ export class SystemTruthTracker {
     await this.updateSystemMetricsFromBatch(batch);
     
     // Analyze distribution for each metric type
-    await this.analyzeDistributions(batch);
+    await this.analyzeDistributionsFromBatch(batch);
+  }
+
+  private async analyzeDistributionsFromBatch(metrics: TruthMetric[]): Promise<void> {
+    // Distribution analysis is handled in updateSystemMetricsFromBatch
+    // This method is for additional per-batch distribution computations
+    if (metrics.length === 0) return;
+
+    // Update distribution metrics based on batch
+    for (const metric of metrics) {
+      const type = metric.metricType;
+      if (!this.systemMetrics.distributionMetrics.taskDistribution[type]) {
+        this.systemMetrics.distributionMetrics.taskDistribution[type] = 0;
+      }
+      this.systemMetrics.distributionMetrics.taskDistribution[type]++;
+    }
   }
   
   private async updateSystemMetricsFromBatch(metrics: TruthMetric[]): Promise<void> {
@@ -800,6 +815,10 @@ export class SystemTruthTracker {
       criticalFailures: 0,
       recoveryTime: 0,
       efficiency: 0.85,
+      throughput: 0,
+      latency: 0,
+      errorRate: 0,
+      successRate: 1.0,
       distributionMetrics: {
         taskDistribution: {},
         accuracyDistribution: {},

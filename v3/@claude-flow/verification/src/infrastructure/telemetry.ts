@@ -461,6 +461,10 @@ export class TruthTelemetryEngine extends EventEmitter {
       criticalFailures: 0,
       recoveryTime: 0,
       efficiency: 0.85,
+      throughput: 0,
+      latency: 0,
+      errorRate: 0,
+      successRate: 1.0,
       distributionMetrics: {
         taskDistribution: {},
         accuracyDistribution: {},
@@ -651,11 +655,11 @@ export class TruthTelemetryEngine extends EventEmitter {
   private async updateAgentScores(): Promise<void> {
     try {
       const agentIds = new Set([
-        ...this.agentScores.keys(),
+        ...Array.from(this.agentScores.keys()),
         ...Array.from(this.truthMetrics.values()).map(m => m.agentId),
       ]);
-      
-      for (const agentId of agentIds) {
+
+      for (const agentId of Array.from(agentIds)) {
         const score = await this.agentScorer.calculateAgentScore(agentId);
         if (score) {
           this.agentScores.set(agentId, score);
@@ -744,7 +748,9 @@ export class TruthTelemetryEngine extends EventEmitter {
       thresholds: [],
       actions: [],
       escalationPath: [],
+      escalationLevel: 0,
       resolved: false,
+      acknowledged: false,
       ...alertData,
     };
     
@@ -1006,8 +1012,8 @@ export class TruthTelemetryEngine extends EventEmitter {
   
   private cleanupOldMetrics(): void {
     const cutoff = new Date(Date.now() - this.config.retentionPeriod);
-    
-    for (const [id, metric] of this.truthMetrics) {
+
+    for (const [id, metric] of Array.from(this.truthMetrics.entries())) {
       if (metric.timestamp < cutoff) {
         this.truthMetrics.delete(id);
       }
@@ -1015,7 +1021,7 @@ export class TruthTelemetryEngine extends EventEmitter {
   }
   
   private async processActiveAlerts(): Promise<void> {
-    for (const [alertId, alert] of this.activeAlerts) {
+    for (const [alertId, alert] of Array.from(this.activeAlerts.entries())) {
       if (!alert.resolved) {
         // Check if alert should be escalated
         await this.alertManager.processAlert(alert);
@@ -1025,8 +1031,8 @@ export class TruthTelemetryEngine extends EventEmitter {
   
   private cleanupResolvedAlerts(): void {
     const cutoff = new Date(Date.now() - 86400000); // 24 hours
-    
-    for (const [alertId, alert] of this.activeAlerts) {
+
+    for (const [alertId, alert] of Array.from(this.activeAlerts.entries())) {
       if (alert.resolved && alert.resolvedAt && alert.resolvedAt < cutoff) {
         this.activeAlerts.delete(alertId);
       }
@@ -1063,21 +1069,21 @@ export class TruthTelemetryEngine extends EventEmitter {
   
   private async loadHistoricalData(): Promise<void> {
     if (!this.config.mcpIntegration) return;
-    
+
     try {
-      const state = await this.memory.retrieve('truth-telemetry:state');
-      
+      const state = await this.memory.retrieve('truth-telemetry:state') as { data?: any } | null;
+
       if (state && state.data) {
         this.systemMetrics = state.data.systemMetrics || this.systemMetrics;
-        
+
         if (state.data.agentScores) {
           this.agentScores = new Map(state.data.agentScores);
         }
-        
+
         if (state.data.activeAlerts) {
           this.activeAlerts = new Map(state.data.activeAlerts);
         }
-        
+
         this.logger.info('Loaded historical telemetry data');
       }
       

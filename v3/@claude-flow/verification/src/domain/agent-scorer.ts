@@ -363,7 +363,7 @@ export class AgentTruthScorer {
     let adaptabilitySum = 0;
     let typeCount = 0;
     
-    for (const [taskType, accuracies] of performanceByType) {
+    for (const [taskType, accuracies] of Array.from(performanceByType.entries())) {
       if (accuracies.length >= 2) {
         const avgAccuracy = accuracies.reduce((sum, acc) => sum + acc, 0) / accuracies.length;
         adaptabilitySum += avgAccuracy;
@@ -681,7 +681,7 @@ export class AgentTruthScorer {
     let totalEfficiency = 0;
     let groupCount = 0;
     
-    for (const [complexity, durations] of complexityGroups) {
+    for (const [complexity, durations] of Array.from(complexityGroups.entries())) {
       const avgDuration = durations.reduce((sum, d) => sum + d, 0) / durations.length;
       const expected = expectedDurations[complexity] || 15;
       

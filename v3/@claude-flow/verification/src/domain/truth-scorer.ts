@@ -122,7 +122,7 @@ export class TruthScorer {
       throw new AppError(
         `Truth score calculation failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
         'TRUTH_SCORE_CALCULATION_FAILED',
-        500
+        { statusCode: 500 }
       );
     }
   }
@@ -180,7 +180,7 @@ export class TruthScorer {
   /**
    * Get agent reliability score
    */
-  getAgentReliability(agentId: AgentId): number {
+  getAgentReliability(agentId: AgentId | string): number {
     const agentKey = typeof agentId === 'string' ? agentId : agentId.id;
     const history = this.agentHistory.get(agentKey);
     

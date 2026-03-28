@@ -10,6 +10,7 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "declarationMap": true,
@@ -26,13 +27,6 @@
     "node_modules",
     "dist",
     "**/*.test.ts",
-    "**/*.spec.ts",
-    "src/infrastructure/telemetry.ts",
-    "src/infrastructure/alert-manager.ts",
-    "src/infrastructure/system-tracker.ts",
-    "src/infrastructure/dashboard-exporter.ts",
-    "src/application/verification-pipeline.ts",
-    "src/domain/truth-scorer.ts",
-    "src/domain/agent-scorer.ts"
+    "**/*.spec.ts"
   ]
 }

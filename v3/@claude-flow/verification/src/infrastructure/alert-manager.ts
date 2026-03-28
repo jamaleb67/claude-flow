@@ -387,6 +387,8 @@ export class TruthAlertManager {
       actions: [...rule.actions],
       escalationPath: [...rule.escalationPath],
       resolved: false,
+      escalationLevel: 0,
+      acknowledged: false,
     };
     
     this.activeAlerts.set(alertId, alert);
@@ -854,15 +856,15 @@ export class TruthAlertManager {
   }
   
   private async processActiveAlerts(): Promise<void> {
-    for (const alert of this.activeAlerts.values()) {
+    for (const alert of Array.from(this.activeAlerts.values())) {
       if (!alert.resolved) {
         await this.processAlert(alert);
       }
     }
   }
-  
+
   private async processEscalations(): Promise<void> {
-    for (const alert of this.activeAlerts.values()) {
+    for (const alert of Array.from(this.activeAlerts.values())) {
       if (!alert.resolved && !alert.acknowledged) {
         await this.checkEscalation(alert);
       }
@@ -944,7 +946,7 @@ export class TruthAlertManager {
     return result;
   }
   
-  private getMetricProperty(metric: TruthMetric, path: string): any {
+  private getMetricProperty(metric: TruthMetric | TruthAlert, path: string): any {
     const parts = path.split('.');
     let value: any = metric;
     
@@ -1076,7 +1078,7 @@ export class TruthAlertManager {
   private cleanupResolvedAlerts(): void {
     const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000); // 24 hours
     
-    for (const [alertId, alert] of this.activeAlerts) {
+    for (const [alertId, alert] of Array.from(this.activeAlerts.entries())) {
       if (alert.resolved && alert.resolvedAt && alert.resolvedAt < cutoff) {
         this.activeAlerts.delete(alertId);
       }
@@ -1091,7 +1093,7 @@ export class TruthAlertManager {
   private resetRateLimits(): void {
     const now = Date.now();
     
-    for (const channel of this.alertChannels.values()) {
+    for (const channel of Array.from(this.alertChannels.values())) {
       for (const rateLimit of channel.rateLimits) {
         if (rateLimit.resetTime && now > rateLimit.resetTime.getTime()) {
           rateLimit.currentCount = 0;

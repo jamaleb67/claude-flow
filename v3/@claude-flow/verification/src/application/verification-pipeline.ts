@@ -586,7 +586,14 @@ export class VerificationPipeline {
         threshold: validator.config.threshold,
         scores: scores.map(s => s.score),
       },
-      evidence: scores.flatMap(s => s.evidence),
+      evidence: scores.flatMap(s => s.evidence.map(e => ({
+        type: e.type,
+        source: e.source,
+        timestamp: e.timestamp,
+        data: e.details,
+        reliability: e.score,
+        weight: e.weight,
+      }))),
     };
   }
 
@@ -606,7 +613,7 @@ export class VerificationPipeline {
     }
 
     const validationResults = await Promise.all(
-      context.claims.map(claim => this.claimValidator.validateClaim(claim, validator.config))
+      context.claims.map(claim => this.claimValidator.validateClaim(claim))
     );
 
     const passedCount = validationResults.filter(r => r.passed).length;

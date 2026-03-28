@@ -374,7 +374,7 @@ export class DashboardExporter {
     
     // Calculate hourly averages
     const dataPoints: DataPoint[] = [];
-    for (const [hour, values] of hourlyData) {
+    for (const [hour, values] of Array.from(hourlyData.entries())) {
       const average = values.reduce((sum, val) => sum + val, 0) / values.length;
       dataPoints.push({
         timestamp: new Date(hour),
@@ -404,7 +404,7 @@ export class DashboardExporter {
     });
     
     const dataPoints: DataPoint[] = [];
-    for (const [hour, data] of hourlyData) {
+    for (const [hour, data] of Array.from(hourlyData.entries())) {
       const rate = data.total > 0 ? data.interventions / data.total : 0;
       dataPoints.push({
         timestamp: new Date(hour),
@@ -455,7 +455,7 @@ export class DashboardExporter {
     const distribution: ErrorDistributionChart[] = [];
     
     // Add error types
-    for (const [errorType, count] of errorCounts) {
+    for (const [errorType, count] of Array.from(errorCounts.entries())) {
       distribution.push({
         category: errorType,
         count,
@@ -566,7 +566,7 @@ export class DashboardExporter {
         id: 'high-alert-volume',
         severity: 'high',
         description: `${criticalAlerts.length} critical alerts active`,
-        affectedAgents: [...new Set(criticalAlerts.map(a => a.source))],
+        affectedAgents: Array.from(new Set(criticalAlerts.map(a => a.source))),
         impact: 'System may be overwhelmed, requiring immediate attention',
         eta: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours
       });
@@ -1040,7 +1040,7 @@ export class DashboardExporter {
   }
   
   private startScheduledReports(): void {
-    for (const [templateId, template] of this.reportTemplates) {
+    for (const [templateId, template] of Array.from(this.reportTemplates.entries())) {
       if (template.schedule) {
         const interval = this.calculateScheduleInterval(template.schedule);
         if (interval > 0) {
@@ -1055,7 +1055,7 @@ export class DashboardExporter {
   }
   
   private stopScheduledReports(): void {
-    for (const timeout of this.scheduledReports.values()) {
+    for (const timeout of Array.from(this.scheduledReports.values())) {
       clearInterval(timeout);
     }
     this.scheduledReports.clear();
