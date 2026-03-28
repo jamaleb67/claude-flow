@@ -22,3 +22,15 @@ export * from './hooks.js';
 
 // Middleware
 export * from './middleware.js';
+
+// Hooks Integration
+export {
+  VerificationHooksIntegration,
+  getDefaultHooksIntegration,
+  initializeHooksIntegration,
+  runPreTaskVerification,
+  runPostTaskVerification,
+  type VerificationHookConfig,
+  type VerificationHookResult,
+  type HooksIntegrationOptions,
+} from './hooks-integration.js';

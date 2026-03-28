@@ -1083,12 +1083,68 @@ export const VERIFICATION_CONSTANTS = {
   HIGH_CONFIDENCE_THRESHOLD: 0.9,
   MEDIUM_CONFIDENCE_THRESHOLD: 0.7,
   LOW_CONFIDENCE_THRESHOLD: 0.5,
-  
+
   // Resource limits
   MAX_VERIFICATION_MEMORY: 512 * 1024 * 1024, // 512MB
   MAX_SNAPSHOT_SIZE: 1024 * 1024 * 1024, // 1GB
   MAX_TEST_DURATION: 60 * 60 * 1000, // 1 hour
 } as const;
+
+// ===== HOOKS INTEGRATION TYPES =====
+
+/**
+ * Context for verification operations (used with @claude-flow/hooks integration)
+ */
+export interface VerificationContext {
+  /** Task being verified */
+  taskId: string;
+  /** Agent performing the task */
+  agentId: string;
+  /** Timestamp of verification context creation */
+  timestamp: Date;
+  /** Claims made during the task */
+  claims: AgentClaim[];
+  /** Evidence collected during verification */
+  evidence: VerificationEvidence[];
+  /** Additional metadata */
+  metadata: Record<string, unknown>;
+}
+
+/**
+ * Deception pattern detected during verification
+ */
+export interface DeceptionPattern {
+  /** Type of deception detected */
+  type: 'overconfidence' | 'fabrication' | 'gaslighting' | 'omission' | 'manipulation';
+  /** Severity of the deception (0-1) */
+  severity: number;
+  /** Human-readable description */
+  description: string;
+  /** When the pattern was detected */
+  detectedAt: Date;
+  /** Supporting evidence */
+  evidence?: VerificationEvidence[];
+  /** Agent involved */
+  agentId?: string;
+  /** Task context */
+  taskId?: string;
+}
+
+/**
+ * Simplified truth score for hooks integration
+ */
+export interface SimpleTruthScore {
+  /** Overall truth score (0-1) */
+  overall: number;
+  /** Accuracy component (0-1) */
+  accuracy: number;
+  /** Consistency component (0-1) */
+  consistency: number;
+  /** Confidence component (0-1) */
+  confidence: number;
+  /** When the score was calculated */
+  timestamp: Date;
+}
 
 export default {
   VERIFICATION_CONSTANTS,
