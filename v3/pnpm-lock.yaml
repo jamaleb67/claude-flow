@@ -126,7 +126,7 @@ importers:
         specifier: ^3.0.0-alpha.1
         version: link:../guidance
       '@claude-flow/memory':
-        specifier: ^3.0.0-alpha.11
+        specifier: ^3.0.0-alpha.12
         version: link:../memory
       '@claude-flow/plugin-gastown-bridge':
         specifier: ^0.1.3
@@ -140,6 +140,12 @@ importers:
       '@ruvector/router':
         specifier: ^0.1.27
         version: 0.1.28
+      '@ruvector/ruvllm-wasm':
+        specifier: ^2.0.2
+        version: 2.0.2
+      '@ruvector/rvagent-wasm':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@ruvector/sona':
         specifier: ^0.1.5
         version: 0.1.5
@@ -509,6 +515,34 @@ importers:
       '@claude-flow/swarm':
         specifier: ^3.0.0-alpha.1
         version: link:../swarm
+      typescript:
+        specifier: ^5.3.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.0.16
+        version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
+
+  '@claude-flow/verification':
+    dependencies:
+      '@claude-flow/memory':
+        specifier: ^3.0.0-alpha.1
+        version: link:../memory
+      '@claude-flow/shared':
+        specifier: ^3.0.0-alpha.1
+        version: link:../shared
+      '@claude-flow/swarm':
+        specifier: ^3.0.0-alpha.1
+        version: link:../swarm
+      zod:
+        specifier: ^3.22.4
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.27
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
       typescript:
         specifier: ^5.3.0
         version: 5.9.3
@@ -3806,6 +3840,12 @@ packages:
     dev: false
     optional: true
 
+  /@ruvector/ruvllm-wasm@2.0.2:
+    resolution: {integrity: sha512-jVu+t710JvEzU6UZZvKrTp+dWsm3hKzOqB+yxrcqFsVaccVfeKyQuvCx13qVENvuntbnfslryErn9QbydH76yQ==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /@ruvector/ruvllm-win32-x64-msvc@0.2.0:
     resolution: {integrity: sha512-ksm+AZVqkkYLVq2Rbc7Rx+gSH7egFWlcH3E5dQpro98Oslc7jUH+uNDRjDVUS3lZXchV+Ot5WPLM4pClRxFm9w==}
     engines: {node: '>= 18'}
@@ -3830,6 +3870,12 @@ packages:
       '@ruvector/ruvllm-linux-x64-gnu': 0.2.0
       '@ruvector/ruvllm-win32-x64-msvc': 0.2.0
     dev: false
+
+  /@ruvector/rvagent-wasm@0.1.0:
+    resolution: {integrity: sha512-zhcnU7XfBEfDwkDFscehq6qGU/TW4LNr287xHHXCuNsaTBPlb8YSnkuMNWg6BBIK/X+UdWAsyYESN5jbNQEaBQ==}
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /@ruvector/rvf-node-darwin-arm64@0.1.7:
     resolution: {integrity: sha512-vll3WJwDn3oOfy1PB10IG7/f3zBpFiMNHL2/2tdJmeRR8La/rSPJ0ZH5MDIsfleiVtaWzh9bvVCtVkZ6uo2jeg==}
@@ -5452,6 +5498,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
     peerDependenciesMeta:
+      agentic-flow:
+        optional: true
       typescript:
         optional: true
     dependencies:
@@ -10595,6 +10643,9 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
+    peerDependenciesMeta:
+      node-gyp:
+        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.1
