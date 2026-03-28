@@ -6,5 +6,13 @@
  * Pending (Day 3+): telemetry, alert-manager, system-tracker, dashboard-exporter
  */
 
-// CLI integration
-export * from './cli-integration.js';
+// CLI integration - all exports for v2 bridge compatibility
+export {
+  VerificationCommand,
+  CommandOption,
+  VerificationCLICommands,
+  initializeVerificationCLI,
+  createVerificationCommand,
+  integrateWithClaudeFlowCLI,
+  executeVerificationFromCLI
+} from './cli-integration.js';

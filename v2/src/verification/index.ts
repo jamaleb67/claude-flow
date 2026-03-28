@@ -1,14 +1,18 @@
 /**
  * Verification Security Module - Entry Point
- * 
+ *
  * This module provides a comprehensive security enforcement system
  * for agent truth verification with enterprise-grade security features.
+ *
+ * V3 Bridge Integration:
+ * This module now bridges to @claude-flow/verification v3 when available,
+ * falling back to v2 implementations for backward compatibility.
  */
 
 // Main security system
-export { 
+export {
   SecurityEnforcementSystem as default,
-  SecurityEnforcementSystem 
+  SecurityEnforcementSystem
 } from './security';
 
 // Individual security components
@@ -36,6 +40,17 @@ export type {
 
 // Utility functions and constants
 export { SECURITY_CONSTANTS } from './types';
+
+// ===== V3 Bridge Exports =====
+// These exports enable v2 CLI commands to use v3 verification functionality
+export {
+  verificationHookManager,
+  VerificationCLICommands,
+  createVerificationCommand,
+  executeVerificationFromCLI,
+  isV3Available,
+  getV3Module
+} from './v3-bridge';
 
 // Error classes
 export {
