@@ -16,3 +16,15 @@ export {
   integrateWithClaudeFlowCLI,
   executeVerificationFromCLI
 } from './cli-integration.js';
+
+// Memory Integration - @claude-flow/memory integration
+export {
+  VerificationMemoryIntegration,
+  getDefaultMemoryIntegration,
+  initializeMemoryIntegration,
+  type VerificationMemoryEntry,
+  type TruthScoreEntry,
+  type DeceptionEntry,
+  type VerificationHistoryEntry,
+  type MemoryIntegrationConfig,
+} from './memory-integration.js';
